@@ -2,8 +2,9 @@
 
 namespace App\Contracts\Product;
 
-use App\DTOs\CreateProductDTO;
-use App\DTOs\EditProductDTO;
+use App\DTOs\Product\CreateProductDTO;
+use App\DTOs\Product\EditProductDTO;
+use App\DTOs\Product\ProductFilterDTO;
 use App\Models\Product;
 
 interface IProductRepository
@@ -13,4 +14,5 @@ interface IProductRepository
     public function query();
     public function delete(Product $product);
     public function edit(Product $product, EditProductDTO $editProductDTO);
+    public function filter(ProductFilterDTO $filters);
 }

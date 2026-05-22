@@ -11,6 +11,7 @@ Produtos
             <form class="flex gap-2">
                 <input type="text" name="search" placeholder="Buscar..."
                 class="border border-gray-400 rounded px-4 py-1 w-2xs"
+                value="{{ $initialFilter['search'] }}"
                 >
                 <button class="bg-gray-100 text-indigo-600 hover:text-white font-bold transition rounded cursor-pointer px-4 py-1 hover:bg-indigo-600">
                     <i class="fa-solid fa-magnifying-glass"></i>

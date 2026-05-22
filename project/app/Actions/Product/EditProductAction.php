@@ -3,7 +3,7 @@
 namespace App\Actions\Product;
 
 use App\Contracts\Product\IProductRepository;
-use App\DTOs\EditProductDTO;
+use App\DTOs\Product\EditProductDTO;
 use App\Models\Product;
 
 class EditProductAction

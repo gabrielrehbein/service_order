@@ -3,7 +3,7 @@
 namespace App\Actions\Product;
 
 use App\Contracts\Product\IProductRepository;
-use App\DTOs\CreateProductDTO;
+use App\DTOs\Product\CreateProductDTO;
 
 class CreateProductAction
 {
