@@ -9,12 +9,13 @@ class Address extends Model {
         'state',
         'city',
         'neighborhood',
+        'customer_id',
         'street',
         'number',
         'complement',
     ];
 
     public function customers(){
-        return $this->hasMany(Customer::class);
+        return $this->hasOne(Customer::class);
     }
 }

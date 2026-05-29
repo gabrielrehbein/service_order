@@ -11,7 +11,6 @@ class Customer extends Model {
         'email',
         'document',
         'person_type',
-        'address_id',
     ];
 
     public function vehicles(){
