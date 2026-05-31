@@ -24,7 +24,7 @@
             </li>
             <li class="hover:text-indigo-600 hover:scale-[101%] transition hover:font-bold">
 
-                <a href="">
+                <a href="{{ route("products.index") }}">
                     <i class="fa-solid fa-box mr-1"></i>
                     Produto
                 </a>
@@ -67,6 +67,7 @@
         </ul>
     </footer>
 
+    @yield('scripts')
 </body>
 
 </html>

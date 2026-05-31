@@ -6,6 +6,7 @@ use App\Contracts\Product\IProductRepository;
 use App\DTOs\Product\CreateProductDTO;
 use App\DTOs\Product\EditProductDTO;
 use App\DTOs\Product\ProductFilterDTO;
+use App\Enums\StockFilterStatus;
 use App\Models\Product;
 use Illuminate\Database\Query\Builder;
 use Override;
@@ -47,18 +48,20 @@ class ProductEloquentRepository implements IProductRepository
     }
 
     public function filter(ProductFilterDTO $filters){
-        return Product::query()
+        $query = Product::query()
             ->when($filters->search, fn($query) =>
                 $query->where("name", "like", "%{$filters->search}%")
             )
-            ->when($filters->minPrice, fn($query) =>
-                $query->where("min_price", "=>", $filters->minPrice)
+            ->when($filters->minPrice && $filters->maxPrice, fn($query) =>
+                $query->whereBetween("sale_price", [$filters->minPrice, $filters->maxPrice])
             )
-            ->when($filters->maxPrice, fn($query) =>
-                $query->where("max_price", "=>", $filters->maxPrice)
-            )
-            ->when($filters->inStock, fn($query) =>
+            ->when($filters->inStock === StockFilterStatus::TRUE, fn($query) =>
                 $query->where("quantity", ">", 0)
-            )->get();
+            )
+            ->when($filters->inStock === StockFilterStatus::FALSE, fn($query) =>
+                $query->where("quantity", "=", 0)
+            );
+
+        return $query->get();
     }
 }

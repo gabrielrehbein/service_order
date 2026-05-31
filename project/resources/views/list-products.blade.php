@@ -6,21 +6,56 @@ Produtos
 
 @section('content')
     <h1 class="text-2xl font-bold">Produtos</h1>
-    <div class="flex justify-between mt-4">
-        <div class="flex gap-4">
-            <form class="flex gap-2">
-                <input type="text" name="search" placeholder="Buscar..."
-                class="border border-gray-400 rounded px-4 py-1 w-2xs"
-                value="{{ $initialFilter['search'] }}"
-                >
-                <button class="bg-gray-100 text-indigo-600 hover:text-white font-bold transition rounded cursor-pointer px-4 py-1 hover:bg-indigo-600">
+    <div class="flex justify-between mt-4 items-end">
+        <div class="flex gap-4 items-end">
+            <form class="flex gap-4 items-end">
+                <div class="flex flex-col gap-1">
+                    <label for="search">Nome</label>
+                    <input type="text" name="search"
+                        placeholder="Busque produtos pelo o nome..."
+                        class="border border-gray-400 rounded px-4 py-1 w-2xs"
+                        value="{{ $initialFilter['search']}}">
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label for="min_price">Preço mínimo</label>
+                    <input type="text" name="min_price"
+                        class="border border-gray-400 rounded px-4 py-1 w-32"
+                        value="{{ $initialFilter['minPrice']}}">
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label for="max_price">Preço máximo</label>
+                    <input type="text" name="max_price"
+                        class="border border-gray-400 rounded px-4 py-1 w-32"
+                        value="{{ $initialFilter['maxPrice']}}"
+                    >
+                </div>
+
+                <div class="flex flex-col gap-1">
+                    <label for="in_stock">Em estoque</label>
+                    <select class="border border-gray-400 rounded px-4 py-1 h-8.5 w-32" name="in_stock">
+                        <option value="all" {{ $initialFilter['inStock'] === 'all' ? 'selected' : '' }}>
+                            Todos
+                        </option>
+                        <option value="true" {{ $initialFilter['inStock'] === 'true' ? 'selected' : '' }}>
+                            Sim
+                        </option>
+                        <option value="false" {{ $initialFilter['inStock'] === 'false' ? 'selected' : '' }}>
+                            Não
+                        </option>
+                    </select>
+                </div>
+
+                <button
+                    class="h-8.5 bg-gray-100 text-indigo-600 hover:text-white font-bold transition rounded px-4 hover:bg-indigo-600">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
-            <a href="{{ route("products.index") }}"
-            class="bg-gray-100 text-indigo-600 hover:text-white font-bold transition rounded cursor-pointer px-4 py-1 hover:bg-indigo-600"
-            >
-                <i class="fa-solid fa-filter-circle-xmark"></i>
+
+            <a href="{{ route('products.index') }}"
+                class="h-8.5 flex items-center bg-gray-100 text-indigo-600 hover:text-white font-bold transition rounded px-4 hover:bg-indigo-600">
+                <i class="fa-solid fa-filter-circle-xmark mr-2"></i>
                 Limpar Filtros
             </a>
         </div>

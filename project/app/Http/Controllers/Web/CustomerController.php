@@ -7,12 +7,20 @@ use App\Actions\Customer\CreateCustomerAction;
 use App\DTOs\Address\CreateAddressDTO;
 use App\DTOs\Address\GetAllAddressDTO;
 use App\DTOs\Customer\CreateCustomerDTO;
-
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Services\External\AddressService;
 
 class CustomerController extends Controller
 {
+
+    public function create(Request $request, AddressService $addressService){
+
+        $initialData = [
+            "states" => $addressService->getAllStates(),
+        ];
+        return view("create-customer", ["initialData" => $initialData]);
+    }
 
     public function seed(CreateCustomerAction $createCustomerAction)
     {

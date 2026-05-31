@@ -22,10 +22,14 @@ class ProductController extends Controller
     public function index(Request $request, GetAllProductAction $getAllProductsAction, FilterProductAction $filterProductAction)
     {
         $initialFilter = [
-            "search" => $request["search"] ?? ""
+            "search" => $request["search"] ?? "",
+            "minPrice" => $request["min_price"] ?? 0,
+            "maxPrice" => $request["max_price"] ?? 9999999,
+            "inStock" => $request["in_stock"],
         ];
 
         $filters = ProductFilterDTO::fromArray($request->all());
+
         $products = $filterProductAction->execute($filters);
 
         return view("list-products", [

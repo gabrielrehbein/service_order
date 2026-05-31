@@ -4,7 +4,7 @@ namespace App\DTOs\Product;
 
 use App\Contracts\Array\IArrayable;
 use App\Contracts\Array\ICreateByArray;
-
+use App\Enums\StockFilterStatus;
 
 class ProductFilterDTO implements IArrayable, ICreateByArray
 {
@@ -12,7 +12,7 @@ class ProductFilterDTO implements IArrayable, ICreateByArray
         public ?string $search = null,
         public ?float $minPrice = null,
         public ?float $maxPrice = null,
-        public ?bool $inStock = null,
+        public StockFilterStatus $inStock = StockFilterStatus::ALL,
         public ?string $orderBy = null,
     ) {}
 
@@ -22,7 +22,7 @@ class ProductFilterDTO implements IArrayable, ICreateByArray
             search: $data["search"] ?? null,
             minPrice: $data["min_price"] ?? null,
             maxPrice: $data["max_price"] ?? null,
-            inStock: $data["in_stock"] ?? null,
+            inStock: StockFilterStatus::tryFrom($data["in_stock"] ?? StockFilterStatus::ALL->value) ?? StockFilterStatus::ALL,
             orderBy: $data["order_by"] ?? null,
         );
     }

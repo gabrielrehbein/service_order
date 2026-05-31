@@ -14,5 +14,7 @@ Route::get("/produtos/{product}/deletar", [ProductController::class, "delete"])-
 Route::get("/secret/products/seed", [ProductController::class, "seed"])->name("products.seed");
 
 
-Route::get("/secret/customer/seed", [CustomerController::class, "seed"])->name("customer.seed");
+Route::get("/secret/customer/seed", [CustomerController::class, "seed"])->name("customers.seed");
+Route::get("/clientes/criar", [CustomerController::class, "create"])->name("customers.create");
+
 
