@@ -16,5 +16,7 @@ Route::get("/secret/products/seed", [ProductController::class, "seed"])->name("p
 
 Route::get("/secret/customer/seed", [CustomerController::class, "seed"])->name("customers.seed");
 Route::get("/clientes/criar", [CustomerController::class, "create"])->name("customers.create");
+Route::post("/clientes/criar", [CustomerController::class, "store"])->name("customers.store");
+
 
 

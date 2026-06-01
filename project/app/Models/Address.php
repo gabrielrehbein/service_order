@@ -16,6 +16,6 @@ class Address extends Model {
     ];
 
     public function customers(){
-        return $this->hasOne(Customer::class);
+        return $this->belongsTo(Customer::class);
     }
 }

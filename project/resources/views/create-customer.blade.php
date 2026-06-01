@@ -18,40 +18,63 @@ Produtos
                 </a>
             </div>
 
-            <form action="{{ route("products.store") }}" method="POST" class="mt-4 flex flex-col gap-4">
+            @if ($errors->any())
+                <div class="bg-red-500 text-white p-4 rounded">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form action="{{ route("customers.store") }}" method="POST" class="mt-4 flex flex-col gap-4">
                 @csrf
                 <div class="flex justify-center gap-4">
                     <div class="flex flex-col gap-1 w-full">
                         <label for="name">Nome</label>
                         <input name="name" type="text" placeholder="Seu nome completo"
+                        required
                         class="border border-gray-400 rounded px-4 py-1">
                     </div>
 
                     <div class="flex flex-col gap-1 w-full">
                         <label for="phone">Telefone</label>
+
                         <input name="phone" type="text" placeholder="51900000000"
+                        maxlength="11"
+                        required
                         class="border border-gray-400 rounded px-4 py-1">
                     </div>
                 </div>
 
                 <div class="flex flex-col gap-1">
                     <label for="email">E-mail</label>
-                    <input name="email" type="text" placeholder="email@email.com"
+                    <input name="email"
+                    required type="text" placeholder="email@email.com"
                     class="border border-gray-400 rounded px-4 py-1">
                 </div>
 
                 <div class="flex justify-center gap-4">
                     <div class="flex flex-col gap-1 w-full">
                         <label for="person_type">Tipo de Pessoa</label>
-                        <select name="person_type" class="border text-center border-gray-400 rounded px-4 py-1 h-8.5">
+                        <select name="person_type" required id="person_type" class="border text-center border-gray-400 rounded px-4 py-1 h-8.5">
                             <option value="PF">Pessoa Fisica</option>
                             <option value="PJ">Pessoa Juridica</option>
                         </select>
                     </div>
 
-                    <div class="flex flex-col gap-1 w-full">
-                        <label for="document">CPF</label>
-                        <input name="document" type="text" placeholder="0000000000"
+                    <div class="flex flex-col gap-1 w-full" id="cpf_container">
+                        <label for="document" id="cpf_label">CPF</label>
+                        <input name="document" id="cpf_input" type="text" placeholder="00000000000"
+                        maxlength="11"
+                        class="border border-gray-400 rounded px-4 py-1 h-8.5">
+                    </div>
+
+                    <div class="flex flex-col gap-1 w-full hidden" id="cnpj_container">
+                        <label for="document" id="cnpj_label">CNPJ</label>
+                        <input name="document" id="cnpj_input" type="text" placeholder="00000000100000"
+                        maxlength="14"
                         class="border border-gray-400 rounded px-4 py-1 h-8.5">
                     </div>
                 </div>
@@ -72,7 +95,7 @@ Produtos
                 <div class="flex justify-center gap-4">
                     <div class="flex flex-col gap-1 w-full">
                         <label for="state">Estado</label>
-                        <select id="state" name="state" class="border text-center border-gray-400 rounded px-4 py-1 h-8.5">
+                        <select required id="state" name="state" class="border text-center border-gray-400 rounded px-4 py-1 h-8.5">
                             @foreach ($initialData["states"] as $state)
                                 <option value="{{ $state['sigla'] }}">{{ $state["nome"] }}</option>
                             @endforeach
@@ -81,7 +104,7 @@ Produtos
 
                     <div class="flex flex-col gap-1 w-full">
                         <label for="city">Cidade</label>
-                        <select name="city" id="city" class="border text-center border-gray-400 rounded px-4 py-1 h-8.5">
+                        <select required name="city" id="city" class="border text-center border-gray-400 rounded px-4 py-1 h-8.5">
 
                         </select>
                     </div>
@@ -89,19 +112,20 @@ Produtos
                 <div class="flex justify-between gap-4 w-full">
                     <div class="flex flex-col gap-1 w-[35%]">
                         <label for="neighborhood">Bairro</label>
-                        <input name="neighborhood" type="text" placeholder="Seu bairro"
+                        <input required name="neighborhood" type="text" placeholder="Seu bairro"
                         class="border border-gray-400 rounded px-4 py-1 h-8.5">
                     </div>
 
                     <div class="flex gap-4 w-[60%]">
                         <div class="flex flex-col gap-1 w-[80%]">
                             <label for="street">Rua</label>
-                            <input name="neighstreetborhood" type="text" placeholder="Sua rua"
+                            <input required name="street" type="text" placeholder="Sua rua"
                             class="border border-gray-400 rounded px-4 py-1 h-8.5">
                         </div>
                         <div class="flex flex-col gap-1 w-[20%]">
                             <label for="number">Número</label>
-                            <input name="number" type="text" placeholder="1014"
+                            <input required name="number" type="text" placeholder="1014"
+                            maxlength="7"
                             class="border border-gray-400 rounded px-4 py-1 h-8.5">
                         </div>
                     </div>
@@ -123,28 +147,26 @@ Produtos
 @endsection
 
 @section('scripts')
-<script>
+<script defer>
+    const personType = document.getElementById('person_type');
+    personType.addEventListener("change", () => {
+        const cpfContainer = document.getElementById('cpf_container');
+        const cnpjContainer = document.getElementById('cnpj_container');
 
-    document.getElementById('state').addEventListener('change', async (event) => {
-        const state = event.target.value;
+        const cpfInput = cpfContainer.querySelector('input');
+        const cnpjInput = cnpjContainer.querySelector('input');
 
-        const response = await fetch(
-            `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${state}/municipios`
-        );
+        cpfContainer.classList.toggle("hidden");
+        cnpjContainer.classList.toggle("hidden");
 
-        const cities = await response.json();
+        if (cpfContainer.classList.contains("hidden")) {
+            cpfInput.value = '';
+        }
 
-        const citySelect = document.getElementById('city');
-
-        citySelect.innerHTML = '';
-
-        cities.forEach(city => {
-            citySelect.innerHTML += `
-                <option value="${city['nome']}">
-                    ${city['nome']}
-                </option>
-            `;
-        });
+        if (cnpjContainer.classList.contains("hidden")) {
+            cnpjInput.value = '';
+        }
     });
+
 </script>
 @endsection

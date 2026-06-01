@@ -3,6 +3,7 @@
 namespace App\Actions\Customer;
 
 use App\Contracts\Customer\ICustomerRepository;
+use App\DTOs\Address\CreateAddressDTO;
 use App\DTOs\Customer\CreateCustomerDTO;
 
 class CreateCustomerAction
@@ -14,7 +15,7 @@ class CreateCustomerAction
         $this->customerRepository = $customerRepository;
     }
 
-    public function execute(CreateCustomerDTO $createCustomerDTO){
-        return $this->customerRepository->create($createCustomerDTO);
+    public function execute(CreateCustomerDTO $createCustomerDTO, CreateAddressDTO $createAddressDTO){
+        return $this->customerRepository->create($createCustomerDTO, $createAddressDTO);
     }
 }

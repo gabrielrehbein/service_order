@@ -18,7 +18,7 @@ class Customer extends Model {
     }
 
     public function address(){
-        return $this->belongsTo(Address::class);
+        return $this->hasOne(Address::class);
     }
 
     public function service_orders(){

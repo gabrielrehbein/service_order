@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Web;
 use App\Actions\Customer\CreateCustomerAction;
 
 use App\DTOs\Address\CreateAddressDTO;
-use App\DTOs\Address\GetAllAddressDTO;
 use App\DTOs\Customer\CreateCustomerDTO;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreCustomerRequest;
 use App\Services\External\AddressService;
 
 class CustomerController extends Controller
@@ -22,32 +22,14 @@ class CustomerController extends Controller
         return view("create-customer", ["initialData" => $initialData]);
     }
 
-    public function seed(CreateCustomerAction $createCustomerAction)
+    public function store(StoreCustomerRequest $request, CreateCustomerAction $createCustomerAction)
     {
-        $address = [
-            "state" => "RS",
-            "customer_id" => 1,
-            "city" => "Camaquã",
-            "neighborhood" => "Cohab",
-            "street" => "Avenida José",
-            "number" => "1190",
-        ];
-        $addressDTO = CreateAddressDTO::fromArray($address);
-
-        $customerDTO = [
-            "address" => $addressDTO,
-            "name" => "Gabriel Rehbein",
-            "person_type" => "PF",
-            "document" => "04507675073",
-            "email" => "gabrielrehbei@gmail.com",
-            "phone" => "51990083958",
-        ];
-
-        $createCustomerDTO = CreateCustomerDTO::fromArray($customerDTO);
-
-        $createCustomerAction->execute($createCustomerDTO);
-
-
-        return redirect("products.index");
+        $data = $request->validated();
+        $customerDTO = CreateCustomerDTO::fromArray($data);
+        $addresDTO = CreateAddressDTO::fromArray($data);
+        $createCustomerAction->execute($customerDTO, $addresDTO);
+        return redirect()->route("customers.create")->with("success", true);
     }
+
+
 }

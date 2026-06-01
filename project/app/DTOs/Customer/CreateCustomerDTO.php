@@ -14,7 +14,6 @@ readonly class CreateCustomerDTO implements IArrayable, ICreateByArray
         public int $phone,
         public string $email,
         public string $document,
-        public CreateAddressDTO $address,
         public string $personType = "PJ" | "PF",
     ) {}
 
@@ -25,7 +24,6 @@ readonly class CreateCustomerDTO implements IArrayable, ICreateByArray
             phone: $data['phone'],
             email: $data['email'],
             document: $data['document'],
-            address: $data['address'],
             personType: $data['person_type'],
         );
     }
@@ -35,7 +33,6 @@ readonly class CreateCustomerDTO implements IArrayable, ICreateByArray
             "phone" => $this->phone,
             "email" => $this->email,
             "document" => $this->document,
-            "address" => $this->address->toArray(),
             "person_type" => $this->personType,
         ];
     }
