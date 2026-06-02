@@ -8,7 +8,7 @@ use App\Models\Customer;
 
 interface ICustomerRepository
 {
-    public function create(CreateCustomerDTO $createCustomerDTO, CreateAddressDTO $createAddressDTO);
+    public function create(CreateCustomerDTO $createCustomerDTO);
 
     public function getAll();
 

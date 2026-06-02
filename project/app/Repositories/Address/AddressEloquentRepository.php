@@ -12,7 +12,7 @@ class AddressEloquentRepository implements IAddressRepository
     #[Override]
     public function create(CreateAddressDTO $createAddressDTO)
     {
-        throw new \Exception('Not implemented');
+        return Address::create($createAddressDTO->toArray());
     }
     #[Override]
     public function getAll()

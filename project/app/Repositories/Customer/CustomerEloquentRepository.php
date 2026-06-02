@@ -12,17 +12,13 @@ use Override;
 class CustomerEloquentRepository implements ICustomerRepository
 {
     #[Override]
-    public function create(CreateCustomerDTO $createCustomerDTO, CreateAddressDTO $createAddressDTO)
+    public function create(CreateCustomerDTO $createCustomerDTO)
     {
-        $customer = Customer::create(
+        return Customer::create(
             $createCustomerDTO->toArray()
         );
-        $createAddressDTO->customer_id = $customer->id;
-        $address = Address::create(
-            $createAddressDTO->toArray()
-        );
-        return $customer->load('address');
     }
+
     #[Override]
     public function getAll()
     {
