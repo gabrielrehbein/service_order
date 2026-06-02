@@ -96,6 +96,7 @@ Produtos
                     <div class="flex flex-col gap-1 w-full">
                         <label for="state">Estado</label>
                         <select required id="state" name="state" class="border text-center border-gray-400 rounded px-4 py-1 h-8.5">
+
                             @foreach ($initialData["states"] as $state)
                                 <option value="{{ $state['sigla'] }}">{{ $state["nome"] }}</option>
                             @endforeach
@@ -104,6 +105,9 @@ Produtos
 
                     <div class="flex flex-col gap-1 w-full">
                         <label for="city">Cidade</label>
+                        <div id="spinner" class="hidden h-5 flex items-center justify-center">
+                            <div class="w-5 h-5 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+                        </div>
                         <select required name="city" id="city" class="border text-center border-gray-400 rounded px-4 py-1 h-8.5">
 
                         </select>
