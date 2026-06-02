@@ -4,8 +4,7 @@ namespace App\DTOs\Customer;
 
 use App\Contracts\Array\IArrayable;
 use App\Contracts\Array\ICreateByArray;
-use App\DTOs\Address\CreateAddressDTO;
-use App\DTOs\Address\GetAllAddressDTO;
+
 
 readonly class CreateCustomerDTO implements IArrayable, ICreateByArray
 {

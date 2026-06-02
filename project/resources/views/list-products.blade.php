@@ -59,10 +59,17 @@ Produtos
                 Limpar Filtros
             </a>
         </div>
-        <a href="{{ route("products.create") }}" class="bg-gray-100 text-indigo-600 hover:text-white font-bold transition rounded cursor-pointer px-4 py-1 hover:bg-indigo-600">
-            <i class="fa-solid fa-plus"></i>
-            Criar
-        </a>
+        <div class="flex gap-4">
+            <a href="{{ route('products.listProductsWithoutStockRelatory') }}" target="_blank" class="bg-gray-100 text-indigo-600 hover:text-white font-bold transition rounded cursor-pointer px-4 py-1 hover:bg-indigo-600">
+                <i class="fa-solid fa-file-export"></i>
+                Exportar
+            </a>
+            <a href="{{ route("products.create") }}" class="bg-gray-100 text-indigo-600 hover:text-white font-bold transition rounded cursor-pointer px-4 py-1 hover:bg-indigo-600">
+                <i class="fa-solid fa-plus"></i>
+                Criar
+            </a>
+        </div>
+
     </div>
     <div class="flex justify-between w-full my-8 flex-wrap gap-12">
         @forelse ($products as $product)
