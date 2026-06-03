@@ -73,7 +73,7 @@ Produtos
 
                     <div class="flex flex-col gap-1 w-full hidden" id="cnpj_container">
                         <label for="document" id="cnpj_label">CNPJ</label>
-                        <input name="document" id="cnpj_input" type="text" placeholder="00000000100000"
+                        <input name="" id="cnpj_input" type="text" placeholder="00000000100000"
                         maxlength="14"
                         class="border border-gray-400 rounded px-4 py-1 h-8.5">
                     </div>
@@ -165,10 +165,17 @@ Produtos
 
         if (cpfContainer.classList.contains("hidden")) {
             cpfInput.value = '';
+            cpfInput.name = '';
+        }
+        else {
+            cpfInput.name = 'document';
         }
 
         if (cnpjContainer.classList.contains("hidden")) {
             cnpjInput.value = '';
+            cnpjInput.name = '';
+        } else {
+            cnpjInput.name = 'document';
         }
     });
 
