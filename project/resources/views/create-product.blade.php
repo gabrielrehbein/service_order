@@ -11,11 +11,11 @@ Produtos
         <div class="w-2xl border border-gray-400 rounded p-8 bg-gray-950/40">
             <div class="flex justify-between">
                 <h1 class="text-2xl font-bold">Criar Produto</h1>
-                <a href="{{ url()->previous() }}"
-                class="bg-gray-100 text-indigo-600 hover:text-white font-bold transition rounded cursor-pointer px-4 py-1 hover:bg-indigo-600">
+                <x-link-as-button href='{{ url()->previous() }}'
+                >
                     <i class="fa-solid fa-arrow-left"></i>
                     Voltar
-                </a>
+                </x-link-as-button>
             </div>
 
             <form action="{{ route("products.store") }}" method="POST" class="mt-4 flex flex-col gap-4">
@@ -51,10 +51,10 @@ Produtos
                     class="border border-gray-400 rounded px-4 py-1"
                     value="0">
                 </div>
-                <button class="bg-gray-100 text-indigo-600 mt-4 hover:text-white w-full font-bold transition rounded cursor-pointer px-4 py-1 hover:bg-indigo-600">
+                <x-default-button >
                     <i class="fa-solid fa-plus"></i>
                     Criar produto
-                </button>
+                </x-default-button>
             </form>
         </div>
     </div>

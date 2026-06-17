@@ -56,18 +56,19 @@ Produtos
                     value="{{ $product->quantity }}">
                 </div>
                 <div class="flex gap-4">
-                    <a href="{{ route("products.delete", $product) }}"
-                    class="bg-gray-100 text-indigo-600 mt-4 hover:text-white w-full text-center font-bold transition rounded cursor-pointer px-4 py-1 hover:bg-red-600">
+                    <x-link-as-button href='{{ route("products.delete", $product) }}' class="w-1/2"
+                    >
                         <i class="fa-solid fa-trash"></i>
                         Deletar
-                    </a>
+                    </x-link-as-button>
 
-                    <button
+                    <x-default-button
                     form="edit-form"
-                    class="bg-gray-100 text-indigo-600 mt-4 hover:text-white w-full font-bold transition rounded cursor-pointer px-4 py-1 hover:bg-indigo-600">
+                    class="w-1/2"
+                    >
                         <i class="fa-solid fa-pencil"></i>
                         Editar
-                    </button>
+                    </x-default-button>
 
                 </div>
             </form>

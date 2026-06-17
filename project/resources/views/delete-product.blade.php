@@ -23,17 +23,20 @@ Produtos
                 @method("DELETE")
 
                 <div class="flex gap-4">
-                    <a
-                    href="{{ url()->previous() }}"
-                    class="bg-gray-100 text-center text-indigo-600 mt-4 hover:text-white w-full font-bold transition rounded cursor-pointer px-4 py-1 hover:bg-indigo-600">
+                    <x-link-as-button
+                        class="flex-1"
+                        :href="url()->previous()"
+                    >
                         <i class="fa-solid fa-arrow-left"></i>
                         Não
-                    </a>
-                    <button
-                    class="bg-gray-100 text-indigo-600 mt-4 hover:text-white w-full text-center font-bold transition rounded cursor-pointer px-4 py-1 hover:bg-red-600">
+                    </x-link-as-button>
+
+                    <x-default-button
+                        class="flex-1"
+                    >
                         <i class="fa-solid fa-trash"></i>
                         Sim
-                    </button>
+                    </x-default-button>
                 </div>
             </form>
         </div>

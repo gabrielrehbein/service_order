@@ -17,7 +17,7 @@
         <a href="a" class="font-bold text-3xl hover:text-indigo-600">SISTEMA OS</a>
         <ul class="flex gap-14">
             <li class="hover:text-indigo-600 hover:scale-[101%] transition hover:font-bold">
-                <a href="" class="">
+                <a href="{{ route('customers.index') }}" class="">
                     <i class="fa-solid fa-users mr-1"></i>
                     Cliente
                 </a>

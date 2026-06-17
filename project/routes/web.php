@@ -20,6 +20,9 @@ Route::get("/produtos/relatorio/sem_estoque", [PDFController::class, "listProduc
 Route::get("/secret/customer/seed", [CustomerController::class, "seed"])->name("customers.seed");
 Route::get("/clientes/criar", [CustomerController::class, "create"])->name("customers.create");
 Route::post("/clientes/criar", [CustomerController::class, "store"])->name("customers.store");
+Route::get("/clientes", [CustomerController::class, "index"])->name("customers.index");
 
+Route::delete("/clientes/{customer}", [CustomerController::class, "destroy"])->name("customers.destroy");
+Route::get("/clientes/{customer}/deletar", [CustomerController::class, "delete"])->name("customers.delete");
 
 

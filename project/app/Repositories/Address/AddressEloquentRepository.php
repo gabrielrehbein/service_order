@@ -28,6 +28,6 @@ class AddressEloquentRepository implements IAddressRepository
     #[Override]
     public function delete(Address $address)
     {
-        throw new \Exception('Not implemented');
+        $address->delete($address->id);
     }
 }

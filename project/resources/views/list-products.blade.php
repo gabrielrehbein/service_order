@@ -47,10 +47,9 @@ Produtos
                     </select>
                 </div>
 
-                <button
-                    class="h-8.5 bg-gray-100 text-indigo-600 hover:text-white font-bold transition rounded px-4 hover:bg-indigo-600">
+                <x-default-button>
                     <i class="fa-solid fa-magnifying-glass"></i>
-                </button>
+                </x-default-button>
             </form>
 
             <a href="{{ route('products.index') }}"
@@ -60,14 +59,14 @@ Produtos
             </a>
         </div>
         <div class="flex gap-4">
-            <a href="{{ route('products.listProductsWithoutStockRelatory') }}" target="_blank" class="bg-gray-100 text-indigo-600 hover:text-white font-bold transition rounded cursor-pointer px-4 py-1 hover:bg-indigo-600">
+            <x-link-as-button href="{{ route('products.listProductsWithoutStockRelatory') }}" target="_blank">
                 <i class="fa-solid fa-file-export"></i>
                 Exportar
-            </a>
-            <a href="{{ route("products.create") }}" class="bg-gray-100 text-indigo-600 hover:text-white font-bold transition rounded cursor-pointer px-4 py-1 hover:bg-indigo-600">
+            </x-link-as-button>
+            <x-link-as-button href='{{ route("products.create") }}'>
                 <i class="fa-solid fa-plus"></i>
                 Criar
-            </a>
+            </x-link-as-button>
         </div>
 
     </div>
