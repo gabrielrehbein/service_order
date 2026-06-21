@@ -19,7 +19,7 @@ Clientes
             </div>
 
             <form id="edit-form"
-    action=""
+    action="{{ route('customers.update', $customer)}}"
     method="POST"
     class="mt-4 flex flex-col gap-4">
 
