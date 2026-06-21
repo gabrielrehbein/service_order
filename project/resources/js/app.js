@@ -1,14 +1,12 @@
-import './bootstrap';
-import { CitiesUI } from './UI/cities-ui';
+import { CitiesUI } from "./UI/cities-ui";
 
+
+console.log('Cities.js carregado');
 const stateSelect = document.getElementById('state');
 
-if (stateSelect) {
+stateSelect.addEventListener('change', async (event) => {
+    console.log(event.target.value);
+
     const citiesUI = new CitiesUI();
-
-    citiesUI.setCities(stateSelect.value);
-
-    stateSelect.addEventListener('change', async (event) => {
-        await citiesUI.setCities(event.target.value);
-    });
-}
+    await citiesUI.setCities(event.target.value);
+});

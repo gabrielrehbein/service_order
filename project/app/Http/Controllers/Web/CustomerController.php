@@ -7,6 +7,7 @@ use App\Actions\Customer\DeleteCustomerAction;
 use App\Actions\Customer\FilterCustomerAction;
 use App\DTOs\Address\CreateAddressDTO;
 use App\DTOs\Customer\CreateCustomerDTO;
+use App\DTOs\Customer\CustomerFilterDTO;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreCustomerRequest;
@@ -17,7 +18,7 @@ class CustomerController extends Controller
 {
     public function index(Request $request,FilterCustomerAction $filterCustomerAction, AddressService $addressService){
 
-        $customers = $filterCustomerAction->execute();
+        $customers = $filterCustomerAction->execute(new CustomerFilterDTO());
         $initialFilter = [
             "search" => $request["search"] ?? "",
             "personType" => $request["personType"] ?? "all",
@@ -55,7 +56,12 @@ class CustomerController extends Controller
         $initialData = [
             "states" => $addressService->getAllStates(),
         ];
-        return view("customers/create-customer", ["initialData" => $initialData]);
+        return view("customers/create-customer", ["states" => $addressService->getAllStates()]);
+    }
+
+    public function show(Customer $customer, AddressService $addressService)
+    {
+        return view("customers/detail-customer", ["customer" => $customer, "states" => $addressService->getAllStates()]);
     }
 
     public function store(StoreCustomerRequest $request, CreateCustomerAction $createCustomerAction)

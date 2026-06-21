@@ -4,6 +4,7 @@ namespace App\Repositories\Address;
 
 use App\Contracts\Address\IAddressRepository;
 use App\DTOs\Address\CreateAddressDTO;
+use App\DTOs\Address\UpdateAddressDTO;
 use App\Models\Address;
 use Override;
 
@@ -29,5 +30,14 @@ class AddressEloquentRepository implements IAddressRepository
     public function delete(Address $address)
     {
         $address->delete($address->id);
+    }
+
+    #[Override]
+    public function update(Address $address, UpdateAddressDTO $updateAddressDTO)
+    {
+        $address->update(
+           $updateAddressDTO->toArray()
+        );
+        return $address->refresh();
     }
 }
