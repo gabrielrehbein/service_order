@@ -1,8 +1,13 @@
 import { CitiesUI } from "./UI/cities-ui";
+import { documentHandler } from "./document-handler";
+import { phoneHandler } from "./phone-handler";
+
+documentHandler();
+phoneHandler();
 
 
-console.log('Cities.js carregado');
 const stateSelect = document.getElementById('state');
+
 
 if(stateSelect){
 stateSelect.addEventListener('change', async (event) => {

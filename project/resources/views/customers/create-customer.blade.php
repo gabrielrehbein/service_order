@@ -63,7 +63,7 @@
 
                 <div class="flex flex-col gap-1">
                     <label for="phone">Telefone</label>
-                    <input name="phone" type="text" class="border border-gray-400 rounded px-4 py-1"
+                    <input name="phone" id="phone" type="text" class="border border-gray-400 rounded px-4 py-1"
                         value="{{ old('phone') }}">
                 </div>
 
@@ -148,6 +148,7 @@
 @section("scripts")
 
 <script>
+
     const personType = document.getElementById("person_type")
     const CPFContainer = document.getElementById("cpf-container")
     const CNPJContainer = document.getElementById("cnpj-container")
@@ -174,6 +175,7 @@
             CPFInput.setAttribute("name", "document");
         }
     })
+
 
 </script>
 
