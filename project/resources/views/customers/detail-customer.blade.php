@@ -11,7 +11,7 @@ Clientes
             <div class="flex justify-between">
                 <h1 class="text-2xl font-bold">Detalhes</h1>
 
-                <a href="{{ url()->previous() }}"
+                <a href="{{ route('customers.index', $customer) }}"
                     class="bg-gray-100 text-indigo-600 hover:text-white font-bold transition rounded cursor-pointer px-4 py-1 hover:bg-indigo-600">
                     <i class="fa-solid fa-arrow-left"></i>
                     Voltar
@@ -133,7 +133,9 @@ Clientes
 
         <div class="flex flex-col gap-1 w-1/2">
             <label for="city">Cidade</label>
-
+            <div id="spinner" class="hidden">
+                <i class="fa-solid fa-spinner fa-spin"></i>
+            </div>
             <select
                 id="city"
                 name="city"

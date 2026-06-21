@@ -28,19 +28,21 @@ class CustomerEloquentRepository implements ICustomerRepository
     #[Override]
     public function query()
     {
-        throw new \Exception('Not implemented');
+        return Customer::query();
     }
     #[Override]
     public function delete(Customer $customer)
     {
-        $customer->address()->delete();
-        $customer->delete($customer->id);
+        $customer->delete();
     }
 
     #[Override]
     public function filter(CustomerFilterDTO $filter)
     {
-        return Customer::all();
+        $query = $this->query()
+            ->when($filter->search)
+            ->where("name", "like", "%{$filter->search}%");
+        return $query->get();
     }
 
     #[Override]

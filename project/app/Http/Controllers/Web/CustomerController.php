@@ -20,9 +20,11 @@ use App\Services\External\AddressService;
 
 class CustomerController extends Controller
 {
-    public function index(Request $request,FilterCustomerAction $filterCustomerAction, AddressService $addressService){
+    public function index(Request $request, FilterCustomerAction $filterCustomerAction, AddressService $addressService){
 
-        $customers = $filterCustomerAction->execute(new CustomerFilterDTO());
+        $customers = $filterCustomerAction->execute(new CustomerFilterDTO(
+            $request["search"] ?? ""
+        ));
         $initialFilter = [
             "search" => $request["search"] ?? "",
             "personType" => $request["personType"] ?? "all",
