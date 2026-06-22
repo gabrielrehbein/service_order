@@ -31,7 +31,7 @@
             </li>
             <li class="hover:text-indigo-600 hover:scale-[101%] transition hover:font-bold">
 
-                <a href="">
+                <a href="{{ route("vehicles.index") }}">
                     <i class="fa-solid fa-car mr-1"></i>
                     Veiculo
                 </a>

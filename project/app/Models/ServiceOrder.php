@@ -10,10 +10,12 @@ class ServiceOrder extends Model {
         'status',
         'service_value',
         'discount',
-        'total_value',
+        'problem_description',
+        'result_description',
         'customer_id',
         'vehicle_id',
-        'opened_at',
+        'started_at',
+        'finished_at'
     ];
 
     public function customer(){

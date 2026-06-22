@@ -9,7 +9,10 @@ class Vehicle extends Model {
         'customer_id',
         'plate',
         'model',
-        'brand'
+        'km',
+        'year_released',
+        'type',
+        'brand_id'
     ];
 
     public function customer(){
@@ -18,5 +21,9 @@ class Vehicle extends Model {
 
     public function service_orders(){
         return $this->hasMany(ServiceOrder::class);
+    }
+
+    public function brand(){
+        return $this->belongsTo(Brand::class);
     }
 }
