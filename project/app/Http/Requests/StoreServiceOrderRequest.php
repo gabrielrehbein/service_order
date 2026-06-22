@@ -33,9 +33,9 @@ class StoreServiceOrderRequest extends FormRequest
                 'numeric',
                 'min:0',
             ],
-            'customer_id' => [
+            'problem_description' => [
                 'required',
-                'exists:customers,id',
+                'string'
             ],
             'vehicle_id' => [
                 'required',

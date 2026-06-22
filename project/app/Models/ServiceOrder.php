@@ -10,28 +10,25 @@ class ServiceOrder extends Model {
         'status',
         'service_value',
         'discount',
+        'total_value',
         'problem_description',
         'result_description',
-        'customer_id',
         'vehicle_id',
         'started_at',
         'finished_at'
     ];
 
-    public function customer(){
-        return $this->belongsTo(Customer::class);
-    }
+
 
     public function products() {
         return $this->belongsToMany(Product::class)
                     ->withPivot('quantity', 'unit_price');
     }
 
-    public function vehicle(){
+    public function vehicle()
+    {
         return $this->belongsTo(Vehicle::class);
     }
 
-    public function maintenance_step(){
-        return $this->hasMany(HasMany::class);
-    }
+
 }

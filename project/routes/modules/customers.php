@@ -3,7 +3,6 @@
 use App\Http\Controllers\Web\CustomerController;
 use Illuminate\Support\Facades\Route;
 
-Route::get("/secret/customer/seed", [CustomerController::class, "seed"])->name("customers.seed");
 Route::get("/clientes/criar", [CustomerController::class, "create"])->name("customers.create");
 Route::post("/clientes/criar", [CustomerController::class, "store"])->name("customers.store");
 Route::get("/clientes", [CustomerController::class, "index"])->name("customers.index");

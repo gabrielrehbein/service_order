@@ -38,7 +38,7 @@
             </li>
             <li class="hover:text-indigo-600 hover:scale-[101%] transition hover:font-bold">
 
-                <a href="">
+                <a href="{{ route('order_service.index') }}">
                     <i class="fa-solid fa-file-invoice-dollar mr-1"></i>
                     Ordem de Serviço
                 </a>

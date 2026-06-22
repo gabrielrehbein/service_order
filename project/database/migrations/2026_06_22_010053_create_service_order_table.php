@@ -22,10 +22,6 @@ return new class extends Migration
             $table->decimal('discount', 10, 2)->default(0);
             $table->decimal('total_value', 10, 2)->default(0);
 
-            $table->foreignId('customer_id')
-                ->constrained()
-                ->restrictOnDelete();
-
             $table->foreignId('vehicle_id')
                 ->constrained()
                 ->restrictOnDelete();
